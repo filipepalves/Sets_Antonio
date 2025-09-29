@@ -1,0 +1,99 @@
+name: Daily Playwright Tests
+
+on:
+  schedule:
+    # Run daily at 9:00 AM UTC (10:00 AM in Lisbon)
+    - cron: '0 9 * * *'
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Install Playwright browsers
+      run: npx playwright install --with-deps
+      
+    - name: Run Playwright tests
+      run: npm test
+      continue-on-error: true
+      
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: playwright-report-${{ github.run_number }}
+        path: |
+          playwright-report/
+          test-results/
+        retention-days: 30
+        
+    - name: Generate test summary
+      if: always()
+      run: |
+        echo "## 🎭 Playwright Test Results" >> test-summary.md
+        echo "**Date:** $(date)" >> test-summary.md
+        echo "**Site:** https://sets.antoniocoutinho.pt/" >> test-summary.md
+        echo "" >> test-summary.md
+        
+        if [ -f "playwright-report/index.html" ]; then
+          # Extract basic stats from the report
+          echo "**Test Report Generated Successfully**" >> test-summary.md
+          echo "- Full report available in artifacts" >> test-summary.md
+        else
+          echo "**No test report found**" >> test-summary.md
+        fi
+        
+        echo "" >> test-summary.md
+        echo "**Repository:** ${{ github.repository }}" >> test-summary.md
+        echo "**Run ID:** ${{ github.run_id }}" >> test-summary.md
+        
+    - name: Send email notification
+      if: always()
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 587
+        username: ${{ secrets.EMAIL_USERNAME }}
+        password: ${{ secrets.EMAIL_PASSWORD }}
+        subject: "🎭 Daily Playwright Tests - Sets António Coutinho"
+        to: ${{ secrets.EMAIL_TO }}
+        from: ${{ secrets.EMAIL_USERNAME }}
+        html_body: |
+          <h2>🎭 Playwright Test Results</h2>
+          <p><strong>Date:</strong> ${{ steps.date.outputs.date }}</p>
+          <p><strong>Site:</strong> <a href="https://sets.antoniocoutinho.pt/">sets.antoniocoutinho.pt</a></p>
+          <p><strong>Repository:</strong> <a href="https://github.com/${{ github.repository }}">${{ github.repository }}</a></p>
+          
+          <h3>📊 Test Summary</h3>
+          <p>Tests executed for the Sets António Coutinho website including:</p>
+          <ul>
+            <li>✅ Basic functionality tests</li>
+            <li>🎵 Audio player functionality</li>
+            <li>📱 Download functionality</li>
+            <li>📋 Playlist functionality</li>
+            <li>♿ Accessibility tests</li>
+            <li>⚡ Performance tests</li>
+          </ul>
+          
+          <h3>🔗 Useful Links</h3>
+          <ul>
+            <li><a href="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}">View Full Test Run</a></li>
+            <li><a href="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts">Download Test Reports</a></li>
+            <li><a href="https://sets.antoniocoutinho.pt/">Visit Website</a></li>
+          </ul>
+          
+          <p><em>This is an automated message from GitHub Actions.</em></p>

@@ -1,44 +1,44 @@
 # Playwright Tests for Sets António Coutinho
 
-Este projeto contém testes automatizados usando Playwright para o site https://sets.antoniocoutinho.pt/
+This project contains automated tests using Playwright for the website https://sets.antoniocoutinho.pt/
 
-## Instalação
+## Installation
 
 ```bash
 npm install
 npx playwright install
 ```
 
-## Executar Testes
+## Running Tests
 
 ```bash
-# Executar todos os testes
+# Run all tests
 npm test
 
-# Executar testes com interface visual
+# Run tests with visual interface
 npm run test:ui
 
-# Executar testes com browser visível
+# Run tests with visible browser
 npm run test:headed
 
-# Debug de testes
+# Debug tests
 npm run test:debug
 
-# Ver relatório dos testes
+# View test report
 npm run test:report
 ```
 
-## Estrutura dos Testes
+## Test Structure
 
-- `tests/basic.spec.ts` - Testes básicos de funcionalidade
-- `tests/performance.spec.ts` - Testes de performance
-- `tests/accessibility.spec.ts` - Testes de acessibilidade
+- `tests/basic.spec.ts` - Basic functionality tests
+- `tests/performance.spec.ts` - Performance tests
+- `tests/accessibility.spec.ts` - Accessibility tests
 
-## Configuração
+## Configuration
 
-A configuração do Playwright está em `playwright.config.ts` e inclui:
-- Testes em múltiplos browsers (Chrome, Firefox, Safari)
-- Testes em dispositivos móveis
-- Screenshots em caso de falha
-- Trace para debug
-- Base URL configurada para o site alvo
+The Playwright configuration is in `playwright.config.ts` and includes:
+- Multi-browser testing (Chrome, Firefox, Safari)
+- Mobile device testing
+- Screenshots on failure
+- Trace for debugging
+- Base URL configured for the target site
