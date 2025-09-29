@@ -1,24 +1,24 @@
 # GitHub Actions Setup
 
-A GitHub Action está configurada para correr **automaticamente** sem necessidade de configuração adicional.
+The GitHub Action is configured to run **automatically** without additional configuration needed.
 
 ## ⏰ Schedule
 
-O workflow está configurado para correr:
-- **Diariamente às 9:00 UTC** (10:00 em Portugal)
-- **Manualmente** quando quiseres (workflow_dispatch)
+The workflow is configured to run:
+- **Daily at 21:00** (Lisbon time)
+- **Manually** whenever you want (workflow_dispatch)
 
-## 📊 Ver Resultados
+## 📊 View Results
 
-Os resultados são mostrados diretamente na **GitHub Actions page**:
+Results are shown directly on the **GitHub Actions page**:
 
-1. Vai a **Actions** tab no teu repo
-2. Seleciona **Daily Playwright Tests** 
-3. Clica num run específico
-4. Vê o **summary detalhado** na página da action
-5. Download dos **artifacts** com relatórios HTML completos
+1. Go to **Actions** tab in your repo
+2. Select **Daily Playwright Tests** 
+3. Click on a specific run
+4. View the **detailed summary** on the action page
+5. Download **artifacts** with complete HTML reports
 
-## 🔍 O que é testado
+## 🔍 What is tested
 
 - ✅ Basic functionality tests
 - 🎵 Audio player functionality  
@@ -28,7 +28,7 @@ Os resultados são mostrados diretamente na **GitHub Actions page**:
 - ⚡ Performance tests
 - 📱 Mobile responsiveness
 
-## 📊 Browsers Testados
+## 📊 Browsers Tested
 
 - 🌐 Chrome (Desktop)
 - 🦊 Firefox (Desktop)  
@@ -36,11 +36,11 @@ Os resultados são mostrados diretamente na **GitHub Actions page**:
 - 📱 Chrome Mobile
 - 📱 Safari Mobile
 
-## 🧪 Test Manual
+## 🧪 Manual Testing
 
-Para executar imediatamente:
-1. Vai a **Actions** no GitHub
-2. Seleciona **Daily Playwright Tests**
-3. Clica **Run workflow** → **Run workflow**
+To execute immediately:
+1. Go to **Actions** on GitHub
+2. Select **Daily Playwright Tests**
+3. Click **Run workflow** → **Run workflow**
 
-**Nota:** Não é necessária configuração de email - todos os resultados são visíveis diretamente no GitHub!
+**Note:** No email configuration needed - all results are visible directly on GitHub!
