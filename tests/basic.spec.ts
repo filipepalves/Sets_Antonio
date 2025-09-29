@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Sets António Coutinho Website', () => {
-  test('should load the homepage', async ({ page }) => {
+test.describe('🌐 Sets António Coutinho Website', () => {
+  test('✅ Homepage Loading Test', async ({ page }) => {
     await page.goto('/');
     
     // Wait for loading to disappear
@@ -15,7 +15,7 @@ test.describe('Sets António Coutinho Website', () => {
     await expect(cards).toHaveCount(6);
   });
 
-  test('should display Michael Larkin content', async ({ page }) => {
+  test('📋 Content Display Test', async ({ page }) => {
     await page.goto('/');
     
     // Wait for loading to disappear
@@ -26,7 +26,7 @@ test.describe('Sets António Coutinho Website', () => {
     await expect(authorNames).toHaveCount(6);
   });
 
-  test('should be responsive on mobile', async ({ page }) => {
+  test('📱 Mobile Responsive Test', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto('/');
     
@@ -40,7 +40,7 @@ test.describe('Sets António Coutinho Website', () => {
     await expect(cards).toHaveCount(6);
   });
 
-  test('should have no console errors', async ({ page }) => {
+  test('🔍 Console Error Check', async ({ page }) => {
     const messages: string[] = [];
     page.on('console', (msg) => {
       if (msg.type() === 'error') {
@@ -53,7 +53,7 @@ test.describe('Sets António Coutinho Website', () => {
     expect(messages).toHaveLength(0);
   });
 
-  test('should load without network failures', async ({ page }) => {
+  test('🌐 Network Reliability Test', async ({ page }) => {
     let failedRequests = 0;
     
     page.on('response', (response) => {
@@ -67,7 +67,7 @@ test.describe('Sets António Coutinho Website', () => {
     expect(failedRequests).toBe(0);
   });
 
-  test('should download file with correct name from card info', async ({ page, browserName }) => {
+  test('📁 Download Functionality Test', async ({ page, browserName }) => {
     // Skip download test on mobile browsers due to different download behavior
     if (browserName === 'webkit' && page.viewportSize()?.width && page.viewportSize()!.width < 600) {
       console.log('Skipping download test on mobile Safari');
@@ -131,7 +131,7 @@ test.describe('Sets António Coutinho Website', () => {
     }
   });
 
-  test('should test playlist functionality if available', async ({ page }) => {
+  test('📋 Playlist Toggle Test', async ({ page }) => {
     await page.goto('/');
     
     // Wait for loading to disappear
@@ -217,7 +217,7 @@ test.describe('Sets António Coutinho Website', () => {
     expect(true).toBe(true);
   });
 
-  test('should show audio player with correct title when play button clicked', async ({ page }) => {
+  test('🎵 Audio Player Test', async ({ page }) => {
     await page.goto('/');
     
     // Wait for loading to disappear

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Performance Tests', () => {
-  test('should load within acceptable time', async ({ page }) => {
+test.describe('⚡ Performance Tests', () => {
+  test('⏱️ Page Load Speed Test', async ({ page }) => {
     const startTime = Date.now();
     
     await page.goto('/');
@@ -12,7 +12,7 @@ test.describe('Performance Tests', () => {
     expect(loadTime).toBeLessThan(5000);
   });
 
-  test('should have good Core Web Vitals', async ({ page }) => {
+  test('📈 Core Web Vitals Test', async ({ page }) => {
     await page.goto('/');
     
     await page.waitForLoadState('networkidle');
@@ -42,7 +42,7 @@ test.describe('Performance Tests', () => {
     console.log('Performance metrics:', metrics);
   });
 
-  test('should not have memory leaks', async ({ page }) => {
+  test('🧠 Memory Usage Test', async ({ page }) => {
     await page.goto('/');
     
     const initialMetrics = await page.evaluate(() => {

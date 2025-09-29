@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Content Tests', () => {
-  test('should display all Larkination versions', async ({ page }) => {
+test.describe('📋 Content Tests', () => {
+  test('🎵 Music Versions Test', async ({ page }) => {
     await page.goto('/');
     
     // Wait for loading to disappear
@@ -21,7 +21,7 @@ test.describe('Content Tests', () => {
     }
   });
 
-  test('should have correct card structure', async ({ page }) => {
+  test('🃏 Card Structure Test', async ({ page }) => {
     await page.goto('/');
     
     // Wait for loading to disappear
@@ -37,7 +37,7 @@ test.describe('Content Tests', () => {
     }
   });
 
-  test('should have styled components classes', async ({ page }) => {
+  test('🎨 Styling Components Test', async ({ page }) => {
     await page.goto('/');
     
     // Wait for loading to disappear
@@ -48,7 +48,7 @@ test.describe('Content Tests', () => {
     await expect(page.locator('.sc-hwddKA')).toHaveCount(6);
   });
 
-  test('should display content in list format', async ({ page }) => {
+  test('📜 List Format Test', async ({ page }) => {
     await page.goto('/');
     
     // Wait for loading to disappear

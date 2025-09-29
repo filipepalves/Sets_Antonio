@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Accessibility Tests', () => {
-  test('should have proper page structure', async ({ page }) => {
+test.describe('♿ Accessibility Tests', () => {
+  test('✅ Page Structure Test', async ({ page }) => {
     await page.goto('/');
     
     // Wait for loading to disappear
@@ -17,7 +17,7 @@ test.describe('Accessibility Tests', () => {
     expect(hasTextContent).toBeGreaterThan(0);
   });
 
-  test('should have proper contrast ratios', async ({ page }) => {
+  test('🎨 Color Contrast Test', async ({ page }) => {
     await page.goto('/');
     
     const bodyStyles = await page.locator('body').evaluate((el) => {
@@ -32,7 +32,7 @@ test.describe('Accessibility Tests', () => {
     expect(bodyStyles.backgroundColor).toBeTruthy();
   });
 
-  test('should be keyboard navigable', async ({ page }) => {
+  test('⌨️ Keyboard Navigation Test', async ({ page }) => {
     await page.goto('/');
     
     await page.keyboard.press('Tab');
@@ -44,7 +44,7 @@ test.describe('Accessibility Tests', () => {
     expect(focusedElement).toBeTruthy();
   });
 
-  test('should have proper language attribute', async ({ page }) => {
+  test('🌍 Language Attribute Test', async ({ page }) => {
     await page.goto('/');
     
     const lang = await page.locator('html').getAttribute('lang');
@@ -54,7 +54,7 @@ test.describe('Accessibility Tests', () => {
     }
   });
 
-  test('should have alt text for images', async ({ page }) => {
+  test('🖼️ Image Alt Text Test', async ({ page }) => {
     await page.goto('/');
     
     const totalImages = await page.locator('img').count();

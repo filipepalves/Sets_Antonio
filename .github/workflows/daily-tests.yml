@@ -28,7 +28,13 @@ jobs:
       run: npx playwright install --with-deps
       
     - name: Run Playwright tests
-      run: npm test
+      run: |
+        echo "🎭 Starting Playwright Tests..."
+        echo "📅 Date: $(date)"
+        echo "🌐 Testing site: https://sets.antoniocoutinho.pt/"
+        echo "📊 Running tests on multiple browsers..."
+        echo ""
+        npm test
       continue-on-error: true
       
     - name: Upload test results
@@ -39,47 +45,55 @@ jobs:
         path: |
           playwright-report/
           test-results/
-        retention-days: 30
+        retention-days: 7
         
     - name: Generate test summary
       if: always()
       run: |
-        echo "## 🎭 Playwright Test Results" >> $GITHUB_STEP_SUMMARY
+        echo "🎭 Generating test summary..."
+        echo ""
+        
+        echo "## 🎭 Relatório de Testes - Sets António Coutinho" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "**📅 Date:** $(date)" >> $GITHUB_STEP_SUMMARY
-        echo "**🌐 Site:** [sets.antoniocoutinho.pt](https://sets.antoniocoutinho.pt/)" >> $GITHUB_STEP_SUMMARY
-        echo "**📁 Repository:** [${{ github.repository }}](https://github.com/${{ github.repository }})" >> $GITHUB_STEP_SUMMARY
-        echo "**🔄 Run ID:** ${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
+        echo "**📅 Data:** $(date '+%d/%m/%Y às %H:%M')" >> $GITHUB_STEP_SUMMARY
+        echo "**🌐 Site testado:** [sets.antoniocoutinho.pt](https://sets.antoniocoutinho.pt/)" >> $GITHUB_STEP_SUMMARY
+        echo "**🔄 Execução:** #${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
         
         # Check if tests passed/failed and add status
         if [ -f "playwright-report/index.html" ]; then
-          echo "### ✅ Test Report Generated Successfully" >> $GITHUB_STEP_SUMMARY
+          echo "### ✅ Testes Executados com Sucesso" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Test Coverage:**" >> $GITHUB_STEP_SUMMARY
-          echo "- ✅ Basic functionality tests" >> $GITHUB_STEP_SUMMARY
-          echo "- 🎵 Audio player functionality" >> $GITHUB_STEP_SUMMARY
-          echo "- 📱 Download functionality" >> $GITHUB_STEP_SUMMARY
-          echo "- 📋 Playlist functionality" >> $GITHUB_STEP_SUMMARY
-          echo "- ♿ Accessibility tests" >> $GITHUB_STEP_SUMMARY
-          echo "- ⚡ Performance tests" >> $GITHUB_STEP_SUMMARY
-          echo "- 📱 Mobile responsiveness" >> $GITHUB_STEP_SUMMARY
+          echo "**🧪 O que foi testado:**" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ **Funcionamento básico** - Carregamento da página, elementos visíveis" >> $GITHUB_STEP_SUMMARY
+          echo "- 🎵 **Player de áudio** - Reprodução de música, controlos" >> $GITHUB_STEP_SUMMARY
+          echo "- 📱 **Downloads** - Botões de download, nomes de ficheiros" >> $GITHUB_STEP_SUMMARY
+          echo "- 📋 **Playlist** - Mostrar/esconder lista de reprodução" >> $GITHUB_STEP_SUMMARY
+          echo "- ♿ **Acessibilidade** - Navegação por teclado, estrutura da página" >> $GITHUB_STEP_SUMMARY
+          echo "- ⚡ **Performance** - Velocidade de carregamento, memoria" >> $GITHUB_STEP_SUMMARY
+          echo "- 📱 **Mobile** - Funcionamento em dispositivos móveis" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**📊 Browsers Tested:**" >> $GITHUB_STEP_SUMMARY
-          echo "- 🌐 Chrome (Desktop)" >> $GITHUB_STEP_SUMMARY
-          echo "- 🦊 Firefox (Desktop)" >> $GITHUB_STEP_SUMMARY
-          echo "- 🧭 Safari (Desktop)" >> $GITHUB_STEP_SUMMARY
-          echo "- 📱 Chrome Mobile" >> $GITHUB_STEP_SUMMARY
-          echo "- 📱 Safari Mobile" >> $GITHUB_STEP_SUMMARY
+          echo "**📊 Browsers testados:**" >> $GITHUB_STEP_SUMMARY
+          echo "- 🌐 **Chrome** (Desktop) - Navegador principal" >> $GITHUB_STEP_SUMMARY
+          echo "- 🦊 **Firefox** (Desktop) - Compatibilidade Mozilla" >> $GITHUB_STEP_SUMMARY
+          echo "- 🧭 **Safari** (Desktop) - Compatibilidade Apple" >> $GITHUB_STEP_SUMMARY
+          echo "- 📱 **Chrome Mobile** - Android/dispositivos móveis" >> $GITHUB_STEP_SUMMARY
+          echo "- 📱 **Safari Mobile** - iPhone/iPad" >> $GITHUB_STEP_SUMMARY
         else
-          echo "### ❌ No test report found" >> $GITHUB_STEP_SUMMARY
-          echo "Tests may have failed to complete." >> $GITHUB_STEP_SUMMARY
+          echo "### ❌ Problemas na Execução dos Testes" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Os testes podem ter falhado ou não ter terminado correctamente." >> $GITHUB_STEP_SUMMARY
+          echo "Verifica os logs acima para mais detalhes." >> $GITHUB_STEP_SUMMARY
         fi
         
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "### 🔗 Useful Links" >> $GITHUB_STEP_SUMMARY
-        echo "- 📄 [Download Full Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $GITHUB_STEP_SUMMARY
-        echo "- 📦 [View Artifacts](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts)" >> $GITHUB_STEP_SUMMARY
-        echo "- 🌐 [Visit Website](https://sets.antoniocoutinho.pt/)" >> $GITHUB_STEP_SUMMARY
+        echo "### 🔗 Links Úteis" >> $GITHUB_STEP_SUMMARY
+        echo "- 📄 **[Ver Relatório Completo](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts)** - Download dos relatórios HTML detalhados" >> $GITHUB_STEP_SUMMARY
+        echo "- 🌐 **[Visitar Website](https://sets.antoniocoutinho.pt/)** - Ver o site testado" >> $GITHUB_STEP_SUMMARY
+        echo "- 🔄 **[Executar Testes Novamente](https://github.com/${{ github.repository }}/actions/workflows/daily-tests.yml)** - Correr manualmente" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "*Generated automatically by GitHub Actions* 🤖" >> $GITHUB_STEP_SUMMARY
+        echo "**💡 Nota:** Os relatórios são guardados por 7 dias e depois apagados automaticamente." >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "*Relatório gerado automaticamente* 🤖" >> $GITHUB_STEP_SUMMARY
+        
+        echo "✅ Test summary generated successfully"
