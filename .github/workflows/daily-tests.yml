@@ -83,30 +83,3 @@ jobs:
         echo "- 🌐 [Visit Website](https://sets.antoniocoutinho.pt/)" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
         echo "*Generated automatically by GitHub Actions* 🤖" >> $GITHUB_STEP_SUMMARY
-        
-    - name: Send email notification
-      if: always()
-      uses: dawidd6/action-send-mail@v3
-      with:
-        server_address: smtp.gmail.com
-        server_port: 587
-        username: ${{ secrets.EMAIL_USERNAME }}
-        password: ${{ secrets.EMAIL_PASSWORD }}
-        subject: "🎭 Daily Tests - Sets António Coutinho"
-        to: ${{ secrets.EMAIL_TO }}
-        from: ${{ secrets.EMAIL_USERNAME }}
-        html_body: |
-          <h2>🎭 Daily Test Notification</h2>
-          <p><strong>📅 Date:</strong> $(date)</p>
-          <p><strong>🌐 Site:</strong> <a href="https://sets.antoniocoutinho.pt/">sets.antoniocoutinho.pt</a></p>
-          
-          <h3>📊 Quick Summary</h3>
-          <p>Daily automated tests have been executed.</p>
-          
-          <h3>🔗 View Results</h3>
-          <ul>
-            <li><a href="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}">📄 View Full Report & Summary</a></li>
-            <li><a href="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts">📦 Download Detailed Reports</a></li>
-          </ul>
-          
-          <p><em>This is an automated message from GitHub Actions.</em></p>
