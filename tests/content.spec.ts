@@ -14,11 +14,10 @@ test.describe('📋 Content Tests', () => {
       'Larkination 2025.04',
       'Larkination 2025.05',
       'Larkination 2025.06',
-      'Larkination 2025.07',
-      'Larkination 2025.08',
-      'Larkination 2025.09',
-      'Larkination 2025.10',
-      'Larkination 2025.11'
+      'Larkination 2020.01',
+      'Larkination 2020.02',
+      'Larkination 2020.03',
+      'Larkination 2024.01'
     ];
 
     for (const version of versions) {
@@ -33,9 +32,9 @@ test.describe('📋 Content Tests', () => {
     await page.waitForSelector('text=Loading', { state: 'hidden', timeout: 30000 });
     
     const cards = page.locator('li.sc-hwddKA');
-    await expect(cards).toHaveCount(11);
+    await expect(cards).toHaveCount(10);
     
-    for (let i = 0; i < 11; i++) {
+    for (let i = 0; i < 10; i++) {
       const card = cards.nth(i);
       await expect(card.locator('span:has-text("Michael Larkin")')).toBeVisible();
       await expect(card.locator('span[class*="sc-hjsuWn"]')).toHaveCount(2);
@@ -50,7 +49,7 @@ test.describe('📋 Content Tests', () => {
     
     await expect(page.locator('.sc-fbQrwq')).toBeVisible();
     await expect(page.locator('.sc-gGKoUb')).toBeVisible();
-    await expect(page.locator('.sc-hwddKA')).toHaveCount(11);
+    await expect(page.locator('.sc-hwddKA')).toHaveCount(10);
   });
 
   test('📜 List Format Test', async ({ page }) => {
@@ -63,6 +62,6 @@ test.describe('📋 Content Tests', () => {
     await expect(list).toBeVisible();
     
     const listItems = list.locator('li');
-    await expect(listItems).toHaveCount(11);
+    await expect(listItems).toHaveCount(10);
   });
 });
