@@ -36,6 +36,9 @@ jobs:
         echo ""
         npm test
       continue-on-error: true
+      env:
+        # Enable video recording on failure
+        PLAYWRIGHT_VIDEO: on-first-retry
       
     - name: Upload test results
       uses: actions/upload-artifact@v4

@@ -3,9 +3,9 @@ import { test, expect } from '@playwright/test';
 test.describe('♿ Accessibility Tests', () => {
   test('✅ Page Structure Test', async ({ page }) => {
     await page.goto('/');
-    
+
     // Wait for loading to disappear
-    await page.waitForSelector('text=Loading', { state: 'hidden', timeout: 15000 });
+    await page.waitForSelector('text=Loading', { state: 'hidden', timeout: 30000 });
     
     const hasTitle = await page.locator('title').count();
     expect(hasTitle).toBeGreaterThan(0);

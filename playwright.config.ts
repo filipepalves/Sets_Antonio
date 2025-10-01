@@ -14,6 +14,7 @@ export default defineConfig({
     baseURL: 'https://sets.antoniocoutinho.pt',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
   },
 
   projects: [

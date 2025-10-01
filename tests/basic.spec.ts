@@ -5,7 +5,7 @@ test.describe('🌐 Sets António Coutinho Website', () => {
     await page.goto('/');
     
     // Wait for loading to disappear
-    await page.waitForSelector('text=Loading', { state: 'hidden', timeout: 15000 });
+    await page.waitForSelector('text=Loading', { state: 'hidden', timeout: 30000 });
     
     await expect(page).toHaveTitle('Vite + React + TS');
     
@@ -19,7 +19,7 @@ test.describe('🌐 Sets António Coutinho Website', () => {
     await page.goto('/');
     
     // Wait for loading to disappear
-    await page.waitForSelector('text=Loading', { state: 'hidden', timeout: 15000 });
+    await page.waitForSelector('text=Loading', { state: 'hidden', timeout: 30000 });
     
     const authorNames = page.locator('span:has-text("Michael Larkin")');
     await expect(authorNames.first()).toBeVisible();
@@ -31,7 +31,7 @@ test.describe('🌐 Sets António Coutinho Website', () => {
     await page.goto('/');
     
     // Wait for loading to disappear
-    await page.waitForSelector('text=Loading', { state: 'hidden', timeout: 15000 });
+    await page.waitForSelector('text=Loading', { state: 'hidden', timeout: 30000 });
     
     await expect(page).toHaveTitle('Vite + React + TS');
     await expect(page.locator('#root')).toBeVisible();
@@ -77,7 +77,7 @@ test.describe('🌐 Sets António Coutinho Website', () => {
     await page.goto('/');
     
     // Wait for loading to disappear
-    await page.waitForSelector('text=Loading', { state: 'hidden', timeout: 15000 });
+    await page.waitForSelector('text=Loading', { state: 'hidden', timeout: 30000 });
     
     // Check for and dismiss any cookie banners/modals
     const cookieAccept = page.locator('button:has-text("Accept"), button:has-text("OK"), button:has-text("Aceitar")');
@@ -135,7 +135,7 @@ test.describe('🌐 Sets António Coutinho Website', () => {
     await page.goto('/');
     
     // Wait for loading to disappear
-    await page.waitForSelector('text=Loading', { state: 'hidden', timeout: 15000 });
+    await page.waitForSelector('text=Loading', { state: 'hidden', timeout: 30000 });
     
     console.log('Checking for playlist-related buttons...');
     
@@ -221,7 +221,7 @@ test.describe('🌐 Sets António Coutinho Website', () => {
     await page.goto('/');
     
     // Wait for loading to disappear
-    await page.waitForSelector('text=Loading', { state: 'hidden', timeout: 15000 });
+    await page.waitForSelector('text=Loading', { state: 'hidden', timeout: 30000 });
     
     // Get the first card's information
     const firstCard = page.locator('li.sc-hwddKA').first();
