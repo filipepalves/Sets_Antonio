@@ -12,7 +12,7 @@ test.describe('🌐 Sets António Coutinho Website', () => {
     await expect(page.locator('#root')).toBeVisible();
     
     const cards = page.locator('li.sc-hwddKA');
-    await expect(cards).toHaveCount(6);
+    await expect(cards).toHaveCount(11);
   });
 
   test('📋 Content Display Test', async ({ page }) => {
@@ -23,7 +23,7 @@ test.describe('🌐 Sets António Coutinho Website', () => {
     
     const authorNames = page.locator('span:has-text("Michael Larkin")');
     await expect(authorNames.first()).toBeVisible();
-    await expect(authorNames).toHaveCount(6);
+    await expect(authorNames).toHaveCount(11);
   });
 
   test('📱 Mobile Responsive Test', async ({ page }) => {
@@ -37,7 +37,7 @@ test.describe('🌐 Sets António Coutinho Website', () => {
     await expect(page.locator('#root')).toBeVisible();
     
     const cards = page.locator('li.sc-hwddKA');
-    await expect(cards).toHaveCount(6);
+    await expect(cards).toHaveCount(11);
   });
 
   test('🔍 Console Error Check', async ({ page }) => {
